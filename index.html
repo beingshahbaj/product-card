@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Roboto:wght@300&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+        integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Bebas Neue', sans-serif;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* scrolbar style  */
+
+        body::-webkit-scrollbar {
+            width: 15px;
+        }
+
+        body::-webkit-scrollbar-track {
+            background: const(--white);
+            border-left: 1px solid 1px solid const(--sonic-silver);
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background: hsl(0, 0%, 80%);
+            border: 3px solid const(--white);
+            -webkit-border-radius: 10px;
+            border-radius: 10px;
+        }
+
+        body::-webkit-scrollbar-thumb:hover {
+            background: hsl(0, 0%, 70%);
+        }
+
+        .has-scrollbar {
+            padding-bottom: 5px;
+        }
+
+        .has-scrollbar::-webkit-scrollbar {
+            width: 12px;
+            /* for vertical scroll */
+            height: 12px;
+            /* for horizontal scroll */
+        }
+
+        .has-scrollbar::-webkit-scrollbar-thumb {
+            background: transparent;
+            border: 3px solid const(--white);
+            -webkit-border-radius: 20px;
+            border-radius: 20px;
+        }
+
+        .has-scrollbar:hover::-webkit-scrollbar-thumb {
+            background: hsl(0, 0%, 90%);
+        }
+
+        .has-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: hsl(0, 0%, 80%);
+        }
+
+        /* reused style  */
+
+
+        h1 {
+            text-transform: uppercase;
+            font-size: 56px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-weight: const(--weight-700);
+
+        }
+
+        b {
+            color: black;
+        }
+
+
+
+        h4,
+        p {
+            text-transform: capitalize;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: .5px;
+        }
+
+
+
+        p {
+            color: #666;
+            margin-bottom: px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background: none;
+            font: inherit;
+            border: none;
+            cursor: pointer;
+        }
+
+        :root {
+            /*  border radius  */
+            --border-radius-md: 10px;
+            --sonic-silver: hsl(0, 0%, 47%);
+
+            /* font-size */
+
+            --fs-4: 1.125rem;
+            --fs-5: 1rem;
+            --fs-6: 0.938rem;
+            --fs-7: 0.875rem;
+            --fs-8: 0.813rem;
+            --fs-9: 0.75rem;
+            --fs-10: 0.688rem;
+            --fs-11: 0.625rem;
+
+            /* font-weight */
+            --weight-300: 300;
+            --weight-400: 400;
+            --weight-500: 500;
+            --weight-600: 600;
+            --weight-700: 700
+        }
+
+
+
+        /* our mein contnt started from here  */
+
+
+
+        .container {
+            margin: 20px 30px;
+        }
+
+        .top-header {
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+            background-color: #f2f2f200;
+            /* padding: 10px; */
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            /* padding: 15px 30px; */
+        }
+
+        .contact-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-item {
+            display: flex;
+            margin-left: 10px;
+            color: #333;
+            font-size: 14px;
+        }
+
+        .contact-item i,
+        .contact-item p {
+            margin-bottom: 0;
+            margin-right: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .top-header {
+                /* flex-direction: column; */
+                /* align-items: flex-start; */
+                /* box-shadow: none; */
+                box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+                padding: 0px 15px;
+            }
+
+            .contact-info {
+                margin-top: 10px;
+            }
+
+        }
+
+        @media (max-width: 428px) {
+            .contact-item {
+
+                font-size: 9px;
+
+            }
+
+            .top-header {
+                padding: 4px 12px;
+            }
+
+            .contact-info {
+                margin-top: 0px;
+            }
+        }
+
+
+
+        .layout {
+            justify-items: center;
+            width: 100%;
+            display: grid;
+            grid:
+                "header" auto "main" 1fr "footer" auto / 1fr;
+            gap: 8px;
+        }
+
+
+
+        .header {
+            padding: 9px 63px;
+            display: flex;
+            width: 100%;
+            /* height: 50px; */
+            /* border: 1px solid const(--sonic-silver); */
+            border-radius: const(--border-radius-md);
+            grid-area: header;
+            justify-content: space-between;
+            margin-bottom: 30px;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+        }
+
+        .header .header-img {
+            width: 13vw;
+        }
+
+        @media(max-width:768px) {
+            .header {
+                padding-left: 15px;
+                padding-right: 15px;
+                padding-bottom: 4px;
+                margin-bottom: 10pxpx;
+
+            }
+
+            h1 {
+                font-size: 35px;
+            }
+
+            .header-content h4 {
+                font-size: 10px;
+            }
+        }
+
+        @media(max-width:428px) {
+            .container {
+                margin: 0px 1px;
+            }
+
+            h1 {
+                font-size: 18px;
+
+            }
+
+            .header-content h4 {
+                font-size: 8px;
+            }
+        }
+
+
+        .main {
+            width: 100%;
+            gap: 2%;
+            display: flex;
+            grid-area: main;
+
+        }
+
+        .main .main-img-box {
+            padding: 0 30px;
+            position: relative;
+            width: 60%;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            border-radius: const(--border-radius-md);
+            overflow: auto hidden;
+            scroll-snap-type: inline mandatory;
+            overscroll-behavior-inline: contain;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+        }
+
+
+        .main .main-img-box {
+            position: relative;
+        }
+
+
+        .main .main-img-box .main-img {
+            min-width: 100%;
+            max-height: 450px;
+            aspect-ratio: 1/1;
+            border-radius: const(--border-radius-md);
+            overflow: hidden;
+            scroll-snap-align: center;
+        }
+
+        .main .main-img-box .main-img img {
+            object-fit: contain;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            object-position: center;
+        }
+
+
+        .main .main-content-box {
+            padding: 20px 40px;
+            width: 40%;
+            /* border: 1px solid const(--sonic-silver);
+             */
+            border-radius: const(--border-radius-md);
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+        }
+
+        .main .main-content-box .rug details {
+            margin: 40px 0;
+        }
+
+        @media(max-width:768px) {
+            .main {
+                flex-direction: column;
+            }
+
+            .main .main-img-box {
+                width: 100%;
+                margin-bottom: 8px;
+                padding: 0;
+            }
+
+            .main .main-content-box {
+                width: 100%;
+                padding: 10px 16px;
+            }
+        }
+
+
+
+
+        .footer {
+            grid-area: footer;
+            border: const(--sonic-silver);
+            border-radius: const(--border-radius-md);
+            width: 100%;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px, rgba(0, 0, 0, 0.04) 0px 10px 10px -5px;
+        }
+
+
+        .footer-container {
+            border-radius: const(--border-radius-md);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #efefef;
+            padding: 20px 30px;
+
+        }
+
+        .footer-info h3,
+        .footer-social h3 {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .footer-info p {
+            color: #666;
+            margin-bottom: 5px;
+        }
+
+        .footer-social ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-social ul li {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .footer-social ul li a {
+            color: #333;
+            font-size: 24px;
+        }
+
+        .footer-bottom {
+            background-color: #333;
+            padding: 10px;
+            color: #fff;
+            text-align: center;
+        }
+
+        .footer-bottom p {
+            margin: 0;
+            font-size: 14px;
+            color: white;
+        }
+
+
+
+
+        /* Footer Information */
+        .footer-info h3,
+        .footer-social h3 {
+            color: #333;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+
+        @media(max-width:768px) {
+
+            .footer-container {
+                padding: 6px 8px;
+            }
+
+            .footer-info h3 {
+                font-size: 12px;
+            }
+
+            .footer-info p {
+                font-size: 10px;
+                margin-bottom: 2px;
+            }
+
+            .footer-social h3 {
+                font-size: 13px;
+            }
+
+            .footer-social li a .fab {
+                font-size: 15px;
+            }
+        }
+        @media(max-width:428px){
+            .footer-info p {
+    font-size: 9px;
+    margin-bottom: 0px;
+}
+        }
+
+
+
+
+        /* style for image popup  */
+
+        style>.image-gallery {
+            display: flex;
+            flex-wrap: wrap;
+
+        }
+
+        .gallery-image {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .image-popup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgb(6 6 6 / 82%);
+            z-index: 999;
+            text-align: center;
+            padding-top: 20px;
+
+        }
+
+        .close-button {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 30px;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        #popupImage {
+            max-width: 90%;
+            max-height: 97%;
+        }
+    </style>
+
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <header class="top-header">
+            <div class="contact-info">
+                <span class="contact-item"><i class="fa fa-phone"></i>
+                    <p>(+91) 123 456 7899</p>
+                </span>
+
+            </div>
+            <div class="contact-info">
+
+                <span class="contact-item"><i class="fa fa-envelope"></i>
+                    <p>info@ahamad rugs.com</p>
+                </span>
+            </div>
+        </header>
+
+        <section class="layout">
+            <div class="header">
+                <div class="header-img-box">
+                    <img src="img1.jpeg" alt="" class="header-img">
+                </div>
+                <div class="header-content">
+                    <h1>ahmad rugs</h1>
+                    <h4>basain jungi road mirzapur (up) india</h4>
+                </div>
+            </div>
+            <div class="main">
+                <div class="main-img-box has-scrollbar">
+
+                    <div class="image-gallery main-img">
+                        <img src="img2.jpeg" alt="Image 1" class="gallery-image" onclick="openPopup('img2.jpeg')">
+                    </div>
+                    <div class="image-gallery main-img">
+                        <img src="img3.jpeg" alt="Image 1" class="gallery-image" onclick="openPopup('img3.jpeg')">
+                    </div>
+                    <div class="image-gallery main-img">
+                        <img src="img4.jpeg" alt="Image 1" class="gallery-image" onclick="openPopup('img4.jpeg')">
+                    </div>
+                    <div class="image-gallery main-img">
+                        <img src="img5.jpeg" alt="Image 1" class="gallery-image" onclick="openPopup('img5.jpeg')">
+                    </div>
+
+
+                </div>
+                <div class="main-content-box">
+                    <p> <b>discription :</b> <b>Ahmad Rugs</b> Renowned Indian company crafting exquisite hand-made rugs
+                        with traditional techniques, premium materials, personalized designs, and a commitment to
+                        customer satisfaction.</p>
+                    <p><b>rug details :</b></p>
+                    <div class="rug-details">
+                        <p> <b> product : </b>&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span> 3 ft x
+                                3 ft
+                                x 3 ft </span> </p>
+                        <p> <b> quality : </b>&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&<span> Black </span> </p>
+                        <p> <b> desine : </b> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span> Round </span> </p>
+                        <p> <b> color :&nbsp;
+                            </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span> Polyester </span>
+                        </p>
+                        <p> <b> scale :
+                            </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span> Polyester </span>
+                        </p>
+                        <p> <b> pile / matreial : </b> <span> Round </span> </p>
+                        <p> <b> foundation : </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <span> Round </span>
+                        </p>
+                    </div>
+                    <p style="color:rgb(255, 68, 0) ;"><b>disclaimer :</b> hand made in india without child labour</p>
+                </div>
+            </div>
+            <div class="footer">
+                <footer>
+                    <div class="footer-container">
+                        <div class="footer-info">
+                            <h3>Contact Us</h3>
+                            <p>basain jungi road mirzapur (up) india</p>
+                            <p>india</p>
+                            <p>Phone: 123-456-7890</p>
+                            <p>Email: info@ahmadrugs.com</p>
+                        </div>
+                        <div class="footer-social">
+                            <h3>Follow Us</h3>
+                            <ul>
+                                <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                                <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                                <li><a href="#"><i class="fab fa-pinterest"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="footer-bottom">
+                        <p>&copy; 2023 Ahmad Rugs. All rights reserved.</p>
+                    </div>
+                </footer>
+
+            </div>
+        </section>
+
+
+        <div id="imagePopup" class="image-popup">
+            <span class="close-button" onclick="closePopup()">&times;</span>
+            <img id="popupImage" src="" alt="Popup Image">
+        </div>
+
+    </div>
+
+</body>
+<script>function openPopup(imageUrl) {
+        const popup = document.getElementById('imagePopup');
+        const popupImage = document.getElementById('popupImage');
+
+        popupImage.src = imageUrl;
+        popup.style.display = 'block';
+    }
+
+    function closePopup() {
+        const popup = document.getElementById('imagePopup');
+        popup.style.display = 'none';
+    }
+</script>
+
+</html>
